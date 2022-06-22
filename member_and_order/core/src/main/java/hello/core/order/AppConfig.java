@@ -2,6 +2,7 @@ package hello.core.order;
 
 import hello.core.discount.DiscountPolicy;
 import hello.core.discount.FixDiscountPolicy;
+import hello.core.discount.RateDiscountPolicy;
 import hello.core.member.MemberRepository;
 import hello.core.member.MemberService;
 import hello.core.member.MemberServiceImpl;
@@ -15,13 +16,13 @@ public class AppConfig { // 리펙토리 : 메소드 이름에서 역할이 모�
 
     public MemberService memberService() { // 구현 객체 선택
         return new MemberServiceImpl(memberRepository());
-        // MemoryMemberRepository() : 역할에 해당하는 배우 선택
     }
 
     public OrderService orderService() { // 구현 객체 선택
         return new OrderServiceImpl(memberRepository(), discountPolicy());
     }
     public DiscountPolicy discountPolicy() {
-        return new FixDiscountPolicy();
+        return new RateDiscountPolicy();
+        // fix -> rate 배우 교체시 변경하는 부분
     }
 }
