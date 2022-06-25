@@ -6,6 +6,9 @@ public class Member {
     private String name;
     private Grade grade;
 
+    public Member() {
+    }
+
     public Member(Long id, String name, Grade grade) {
         this.id = id;
         this.name = name;
@@ -15,7 +18,6 @@ public class Member {
     public Long getId() {
         return id;
     }
-
     public String getName() {
         return name;
     }
@@ -23,4 +25,5 @@ public class Member {
     public Grade getGrade() {
         return grade;
     }
+
 }
