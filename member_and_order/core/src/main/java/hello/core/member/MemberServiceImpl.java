@@ -4,7 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
-public class MemberServiceImpl implements MemberService{
+public class MemberServiceImpl implements MemberService {
+
     private final MemberRepository memberRepository;
 
     @Autowired
@@ -22,7 +23,7 @@ public class MemberServiceImpl implements MemberService{
         return memberRepository.findById(memberId);
     }
 
-    //for Test
+    //테스트 용도
     public MemberRepository getMemberRepository() {
         return memberRepository;
     }

@@ -16,15 +16,19 @@ public class Order {
     public int calculatePrice() {
         return itemPrice - discountPrice;
     }
+
     public Long getMemberId() {
         return memberId;
     }
+
     public String getItemName() {
         return itemName;
     }
+
     public int getItemPrice() {
         return itemPrice;
     }
+
     public int getDiscountPrice() {
         return discountPrice;
     }
