@@ -1,7 +1,5 @@
 package hello.hellospring.domain;
 
-import org.apache.juli.logging.Log;
-
 public class Member {
     private Long id;
     private String name;

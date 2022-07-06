@@ -3,10 +3,13 @@ package hello.hellospring.service;
 import hello.hellospring.domain.Member;
 import hello.hellospring.repository.MemberRepository;
 import hello.hellospring.repository.MemoryMemberRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
+//@Service
 public class MemberService {// 서비스는 비지니스에 가까운 용어 사용
 
     // 1) new 객체와 test 객체가 다름
@@ -15,6 +18,7 @@ public class MemberService {// 서비스는 비지니스에 가까운 용어 사
     //  2) 같은 인스턴스로
     private final MemberRepository memberRepository;
 
+    //@Autowired
     public MemberService(MemberRepository memberRepository) {
         this.memberRepository = memberRepository;
     }
@@ -42,4 +46,3 @@ public class MemberService {// 서비스는 비지니스에 가까운 용어 사
         return memberRepository.findById(memberId);
     }
 }
-
