@@ -5,11 +5,13 @@ import hello.hellospring.repository.MemberRepository;
 import hello.hellospring.repository.MemoryMemberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
 
 //@Service
+@Transactional // JPA 데이터 저장을 위해
 public class MemberService {// 서비스는 비지니스에 가까운 용어 사용
 
     // 1) new 객체와 test 객체가 다름
@@ -24,11 +26,19 @@ public class MemberService {// 서비스는 비지니스에 가까운 용어 사
     }
 
     // 회원가입
-    public Long join(Member member) {
+    public Long join(Member member) { // JPA는 모든 데이터의 변경이 트랜젹션 안에 주입되어 있어야함
         // member.orElseGet() : 값이 있는 경우만 꺼냄
-        validateDuplicateMember(member); // 중복 회원 검증
-        memberRepository.save(member);
-        return member.getId();
+
+        long start = System.currentTimeMillis();
+        try {
+            validateDuplicateMember(member); // 중복 회원 검증
+            memberRepository.save(member);
+            return member.getId();
+        } finally {
+            long finish = System.currentTimeMillis();
+            long timeMs = finish - start;
+            System.out.println("join = "+ timeMs + "ms");
+        }
     }
 
     private void validateDuplicateMember(Member member) {
@@ -39,7 +49,14 @@ public class MemberService {// 서비스는 비지니스에 가까운 용어 사
     }
 
     public List<Member> findMembers() { // 전체 회원 조희
-        return memberRepository.findAll();
+        long start = System.currentTimeMillis();
+        try {
+            return memberRepository.findAll();
+        } finally {
+            long finish = System.currentTimeMillis();
+            long timeMs = finish - start;
+            System.out.println("join = "+ timeMs + "ms");
+        }
     }
 
     public Optional<Member> findOne(Long memberId) {
