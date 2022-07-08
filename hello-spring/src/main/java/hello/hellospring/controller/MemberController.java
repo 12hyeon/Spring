@@ -19,6 +19,7 @@ public class MemberController {
     @Autowired // 스프링에서 알아서 연결시킴
     public MemberController(MemberService memberService) {
         this.memberService = memberService;
+        System.out.println("memberService =" + memberService.getClass());
     }
 
     // 2) 필드 주입
@@ -42,7 +43,6 @@ public class MemberController {
         member.setName(form.getName());
 
         memberService.join(member);
-
         return "redirect:/"; // 홈 화면으로
     }
 
