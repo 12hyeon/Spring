@@ -26,7 +26,6 @@ public class FrontControllerServiceV1 extends HttpServlet {
 
     @Override
     protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        System.out.println("FrontControllerServiceV1.service");
 
         // "/front-controller/v1/members" -> new MemberListControllerV1()
         String requestURI = request.getRequestURI();
