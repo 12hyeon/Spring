@@ -29,7 +29,7 @@ public class SpringConfig {
     private final MemberRepository memberRepository;
 
     @Autowired
-    public SpringConfig(MemberRepository memberRepository) { // spring jpa가 만든 구현체가 등록됨
+    public SpringConfig(MemberRepository memberRepository) {
         this.memberRepository = memberRepository;
     }
 
