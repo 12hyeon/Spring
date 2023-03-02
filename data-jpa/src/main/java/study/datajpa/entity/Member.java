@@ -8,7 +8,7 @@ import javax.persistence.*;
 @Getter
 @Setter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@ToString(of = {"id", "username", "age"}) // 객체 출력시 형태 -> team 포함시 무한 루프될 수도
+//@ToString(of = {"id", "username", "age"}) // 객체 출력시 형태 -> team 포함시 무한 루프될 수도
 public class Member {
 
     @Id @GeneratedValue
@@ -17,7 +17,7 @@ public class Member {
     private String username;
     private int age;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY) // 지연로딩
     @JoinColumn(name="team_id")
     private Team team;
 
@@ -26,8 +26,17 @@ public class Member {
         this.username = username;
     }
 
-    public void changeUsername(String username) {
+    public Member(String username, int age, Team team) {
         this.username = username;
+        this.age = age;
+
+        if (team != null) {
+            changeTeam(team);
+        }
+    }
+
+    public void changeTeam(Team team) {
+        this.team = team;
         team.getMembers().add(this);
     }
 }

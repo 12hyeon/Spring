@@ -12,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 @Transactional
-// @Rollback(false) db에 반영
+@Rollback(false) //db에 반영
 class MemberRepositoryTest {
 
     @Autowired MemberRepository memberRepository;
