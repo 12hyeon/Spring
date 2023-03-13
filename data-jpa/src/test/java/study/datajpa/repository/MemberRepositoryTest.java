@@ -12,6 +12,7 @@ import study.datajpa.entity.Team;
 import java.lang.reflect.Array;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
@@ -126,4 +127,17 @@ class MemberRepositoryTest {
             System.out.println("member = "+member);
         }
     }
+
+    @Test
+    public void returnType() {
+        Member m1 = new Member("AAA", 10);
+        Member m2 = new Member("AAA", 20);
+        memberRepository.save(m1);
+        memberRepository.save(m2);
+
+        // List 반환 값이 절대 null이 아님
+        Optional<Member> result = memberRepository.findOptionalByUsername("abc");
+        System.out.println("result = " + result);
+    }
+
 }
